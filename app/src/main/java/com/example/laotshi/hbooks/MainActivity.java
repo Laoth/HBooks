@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private Handler mDrawerActionHandler;
+    private Handler mDrawerActionHandler= new Handler;
     public OnNavigationItemSelected onNavigationItemSelected = new OnNavigationItemSelected() {
         @Override
         public boolean onNavigationItemSelected(final MenuItem menuItem) {
@@ -95,16 +95,21 @@ public class MainActivity extends AppCompatActivity {
     private void navigate(final int itemId){
         switch (itemId){
             case R.id.drawer_item_1:
-                getFragmentManager().beginTransaction().replace(R.id.content,mFirstFragment).commit();
+                onFragmentLoad(mFirstFragment);
                 break;
             case R.id.drawer_item_2:
-                getFragmentManager().beginTransaction().replace(R.id.content,mSecondFragment).commit();
+         onFragmentLoad(mSecondFragment);
                 break;
             default:
                 break;
         }
     }
+ private void onFragmentLoad(Fragment fragment) {
 
+        getFragmentManager().
+                beginTransaction().
+                replace(R.id.content,fragment).commit();
+    }
     /*
     private void navigate(final int itemId) {
     switch (itemId) {
